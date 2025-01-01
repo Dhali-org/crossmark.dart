@@ -114,7 +114,7 @@ class Transaction {
       String Account,
       String Destination,
       String Channel,
-      String Amount,
+      dynamic Amount,
       int SettleDelay,
       String PublicKey});
 }
