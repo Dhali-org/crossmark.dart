@@ -103,10 +103,11 @@ class SignInResponseMetaObject {
 @JS()
 @anonymous
 class SignInResponseDataObject {
-  external String get address;
-  external String get publicKey;
+  external String? get errorMessage;
+  external String? get address;
+  external String? get publicKey;
   external String? get signature;
-  external NetworkData get network;
+  external NetworkData? get network;
 
   external factory SignInResponseDataObject({
     String address,
