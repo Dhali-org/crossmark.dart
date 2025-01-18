@@ -68,10 +68,35 @@ class Response {
 @JS()
 @anonymous
 class SignInResponseData {
+  external SignInResponseMetaObject? get meta;
   external SignInResponseDataObject get data;
 
   external factory SignInResponseData({
     SignInResponseData data,
+  });
+}
+
+@JS()
+@anonymous
+class SignInResponseMetaObject {
+  external bool? get isError;
+  external bool? get isExpired;
+  external bool? get isFail;
+  external bool? get isPending;
+  external bool? get isRejected;
+  external bool? get isSigned;
+  external bool? get isSuccess;
+  external bool? get isVerified;
+
+  external factory SignInResponseMetaObject({
+    bool? isError,
+    bool? isExpired,
+    bool? isFail,
+    bool? isPending,
+    bool? isRejected,
+    bool? isSigned,
+    bool? isSuccess,
+    bool? isVerified,
   });
 }
 
