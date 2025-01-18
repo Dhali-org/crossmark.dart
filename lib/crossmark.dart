@@ -68,7 +68,6 @@ class Response {
 @JS()
 @anonymous
 class SignInResponseData {
-  external SignInResponseMetaObject? get meta;
   external SignInResponseDataObject get data;
 
   external factory SignInResponseData({
@@ -103,6 +102,7 @@ class SignInResponseMetaObject {
 @JS()
 @anonymous
 class SignInResponseDataObject {
+  external SignInResponseMetaObject? get meta;
   external String? get errorMessage;
   external String? get address;
   external String? get publicKey;
