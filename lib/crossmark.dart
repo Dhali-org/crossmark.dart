@@ -60,9 +60,7 @@ external dynamic _signAndSubmitAndWait(Transaction request);
 class Response {
   external SignInResponseData get response;
 
-  external factory Response({
-    Response response,
-  });
+  external factory Response({Response response});
 }
 
 @JS()
@@ -70,9 +68,7 @@ class Response {
 class SignInResponseData {
   external SignInResponseDataObject get data;
 
-  external factory SignInResponseData({
-    SignInResponseData data,
-  });
+  external factory SignInResponseData({SignInResponseData data});
 }
 
 @JS()
@@ -108,6 +104,7 @@ class SignInResponseDataObject {
   external String? get publicKey;
   external String? get signature;
   external NetworkData? get network;
+  external CrossmarkSubmitResponse? get resp;
 
   external factory SignInResponseDataObject({
     String address,
@@ -124,23 +121,43 @@ class NetworkData {
   external String get protocol;
   external String get type;
 
-  external factory NetworkData({
-    String label,
-    String protocol,
-    String type,
-  });
+  external factory NetworkData({String label, String protocol, String type});
+}
+
+@JS()
+@anonymous
+class CrossmarkSubmitResponse {
+  external String? get hash;
+  external CrossmarkSubmitResult? get result;
+}
+
+@JS()
+@anonymous
+class CrossmarkSubmitResult {
+  external String? get hash;
+}
+
+extension CrossmarkTransactionId on Response {
+  String? get transactionId {
+    return response.data.resp?.result?.hash ?? response.data.resp?.hash;
+  }
+
+  String? get transactionHash {
+    return transactionId;
+  }
 }
 
 // The request and response structures for `signAndSubmit`.
 @JS()
 @anonymous
 class Transaction {
-  external factory Transaction(
-      {String TransactionType,
-      String Account,
-      String Destination,
-      String Channel,
-      dynamic Amount,
-      int SettleDelay,
-      String PublicKey});
+  external factory Transaction({
+    String TransactionType,
+    String Account,
+    String Destination,
+    String Channel,
+    dynamic Amount,
+    int SettleDelay,
+    String PublicKey,
+  });
 }
